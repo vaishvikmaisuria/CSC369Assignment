@@ -1,0 +1,15 @@
+Names: Vaishvik Maisuria
+UtorID: maisuri9
+Student No. 1003362531
+Names: Michael Muratov
+UtorID: muratovm
+Student No. 1003430218
+
+
+* Discussion on Starvation *
+
+Finite Case:
+In a concurrent computing, starvation is encounter when a thread may get caught in an endless yield loop while other threads repeatedly enter and leave the critical section, the next one to enter depends on scheduling and could be denied entry indefinitely. The Operating System has a pre-set scheduling for the threads hence we are not responsible for scheduling. We did not add priority to the threads hence it will not cause any starvation through scheduling and priority. We used synchronization through conditional variables and made sure that each car eventually would get a chance to hold the quadrant locks to pass the intersection even through a thread might be blocked from receiving a lane lock or a quadrant(quad[i]) lock. Since the buffer has a limited number of cars and we can assume that the program will not have a deadlock eventually as the pthread clear all pthreads will have a chance to acquire the lock. 
+Infinite Case:
+There is one instance where our monitor can experience starvation in the lane and cross threads if we allow for an infinite number of cars in the input file. A lane thread can get locked out serving the cars in its lane if other cross threads are locking the required quadrants for other lanes to pump cars into. Since the lane thread can accept an infinite number of cars one lane may keep requesting its lane mutex continuously, pumping cars into it’s corresponding cross thread and potentially locking out multiple other threads from executing. For example, the same lane can send an infinite number of u-turning cars, locking out all other threads if the operating system gives unfair attention to that lane.  This can cause both the cross lane to starve due to not being able to send its cars into the intersection, and the lane thread to starve due to having a full buffer and it’s corresponding cross thread not taking out any cars. Thus, starvation is possible in an infinite car list example.
+
